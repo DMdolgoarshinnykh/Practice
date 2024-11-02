@@ -1,0 +1,47 @@
+mydb=# 
+mydb=# CREATE TABLE Customers (     
+    id INT PRIMARY KEY,
+    name VARCHAR(255)
+);                   
+                   
+CREATE TABLE Orders (                     
+    id INT PRIMARY KEY,
+    customerId INT,
+    FOREIGN KEY (customerId) REFERENCES Customers(id)
+);
+CREATE TABLE
+CREATE TABLE
+mydb=# 
+mydb=# 
+mydb=# INSERT INTO Customers (id, name) VALUES
+(1, 'Alice'),
+(2, 'Bob'),
+(3, 'Charlie'),
+(4, 'David'),
+(5, 'Eve'),
+(6, 'Fiona'),
+(7, 'George'),
+(8, 'Harry');
+INSERT 0 8
+mydb=# 
+mydb=# INSERT INTO Orders (id, customerId) VALUES
+(1, 1),
+(2, 1),
+(3, 2),
+(4, 3),
+(5, 3),
+(6, 4),
+(7, 5),
+(8, 6);
+INSERT 0 8
+mydb=# 
+mydb=# SELECT name FROM Customers WHERE id NOT IN (SELECT customerId FROM Orders)
+;
+  name  
+--------
+ George
+ Harry
+(2 rows)
+
+mydb=# 
+

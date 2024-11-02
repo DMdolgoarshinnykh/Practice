@@ -1,0 +1,29 @@
+mydb=# 
+mydb=# CREATE TABLE Activity (
+    player_id INT,
+    device_id INT,
+    event_date DATE,
+    games_played INT,
+    PRIMARY KEY (player_id, event_date)
+);
+CREATE TABLE
+mydb=# 
+mydb=# INSERT INTO Activity (player_id, device_id, event_date, games_played)
+VALUES
+    (1, 1, '2022-01-01', 5),
+    (1, 2, '2022-01-02', 3),
+    (2, 3, '2022-01-01', 2),
+    (3, 1, '2022-01-03', 0),
+    (3, 4, '2022-01-04', 10);
+INSERT 0 5
+mydb=# SELECT player_id, MIN(event_date) AS first_login 
+FROM Activity 
+GROUP BY player_id ;
+ player_id | first_login 
+-----------+-------------
+         3 | 2022-01-03
+         2 | 2022-01-01
+         1 | 2022-01-01
+(3 rows)
+
+

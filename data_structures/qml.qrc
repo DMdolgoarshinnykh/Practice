@@ -1,0 +1,17 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>AnimatedButton.qml</file>
+        <file>ShowArray.qml</file>
+        <file>ShowList.qml</file>
+        <file>ShowStack.qml</file>
+        <file>ShowQueue.qml</file>
+        <file>ShowDeque.qml</file>
+        <file>ShowTree.qml</file>
+        <file>ShowGraph.qml</file>
+        <file>ShowSet.qml</file>
+        <file>ShowHashTable.qml</file>
+        <file>ShowHeap.qml</file>
+        <file>ShowStructures.qml</file>
+    </qresource>
+</RCC>

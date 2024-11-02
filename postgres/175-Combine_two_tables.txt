@@ -1,0 +1,43 @@
+mydb=# 
+mydb=# 
+mydb=# 
+mydb=# CREATE TABLE Person (
+mydb(#     personId INT PRIMARY KEY,
+mydb(#     lastName VARCHAR(50),
+mydb(#     firstName VARCHAR(50)
+mydb(# );
+CREATE TABLE
+mydb=# CREATE TABLE Address (
+mydb(# addressId INT PRIMARY KEY,
+mydb(# personId INT,
+mydb(# city VARCHAR(100),
+mydb(# state VARCHAR(100),
+mydb(# FOREIGN KEY (personId) REFERENCES Person(personId)
+mydb(# );
+CREATE TABLE
+mydb=# 
+mydb=# INSERT INTO Person (personId, lastName, firstName) VALUES
+mydb-# (1, 'Иван', 'Иванов'),
+mydb-# (2, 'Григорий', 'Гришкин');
+INSERT 0 2
+mydb=# INSERT INTO Address (addressId, personId, city, state) VALUES
+mydb-# (1, 2, 'городN', 'ОбластьN');
+INSERT 0 1
+mydb=# SELECT
+mydb-# p.firstName,
+mydb-# 
+mydb-# p.lastName,
+mydb-# a.city,
+mydb-# a.state
+mydb-# FROM Address a
+mydb-# RIGHT JOIN Person p
+mydb-# ON
+mydb-# a.personId = p.personId;
+ firstname | lastname |  city  |  state   
+-----------+----------+--------+----------
+ Гришкин   | Григорий | городN | ОбластьN
+ Иванов    | Иван     |        | 
+(2 rows)
+
+mydb=# 
+

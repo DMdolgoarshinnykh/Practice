@@ -1,0 +1,95 @@
+mydb=# 
+mydb=# 
+mydb=# CREATE TABLE Person (
+    id INT PRIMARY KEY,
+    email VARCHAR(255)
+);
+CREATE TABLE
+mydb=# 
+mydb=# 
+mydb=# 
+mydb=# INSERT INTO Person (id, email)
+VALUES
+(1, 'john@example.com'),
+(2, 'jane@example.com'),
+(3, 'johndoe@example.com'),
+(4, 'jane.doe@example.com'),
+(5, 'test@example.com');
+INSERT 0 5
+mydb=# 
+mydb=# SELECT p.email 
+FROM Person as p 
+WHERE EXISTS (
+  SELECT 1 
+  FROM Person as c 
+  WHERE p.email = c.email AND p.id != c.id
+)
+mydb-# ;
+ email 
+-------
+(0 rows)
+
+mydb=# SELECT email 
+FROM Person 
+GROUP BY email 
+HAVING COUNT(*) > 1;
+ email 
+-------
+(0 rows)
+
+mydb=# INSERT INTO Person (id, email)
+VALUES
+(6, 'john@example.com'),
+(7, 'jane@example.com'),
+(8, 'test@example.com'),
+(9, 'test@example.com'),
+(10, 'test@example.com');
+INSERT 0 5
+mydb=# 
+mydb=# SELECT p.email 
+FROM Person as p 
+WHERE EXISTS (
+  SELECT 1 
+  FROM Person as c 
+  WHERE p.email = c.email AND p.id != c.id
+)
+;
+      email       
+------------------
+ john@example.com
+ jane@example.com
+ test@example.com
+ john@example.com
+ jane@example.com
+ test@example.com
+ test@example.com
+ test@example.com
+(8 rows)
+
+mydb=# SELECT email 
+FROM Person 
+GROUP BY email 
+HAVING COUNT(*) > 1;
+      email       
+------------------
+ john@example.com
+ test@example.com
+ jane@example.com
+(3 rows)
+
+mydb=# SELECT DISTINCT p.email 
+FROM Person as p 
+WHERE EXISTS (
+  SELECT 1 
+  FROM Person as c 
+  WHERE p.email = c.email AND p.id != c.id
+);
+      email       
+------------------
+ john@example.com
+ test@example.com
+ jane@example.com
+(3 rows)
+
+mydb=# 
+
