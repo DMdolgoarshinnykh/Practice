@@ -1,0 +1,17 @@
+mydb=# CREATE TABLE products (
+    product_id INT PRIMARY KEY,
+    low_fats VARCHAR(1) CHECK (low_fats IN ('Y', 'N')),
+    recyclable VARCHAR(1) CHECK (recyclable IN ('Y', 'N'))
+);
+CREATE TABLE
+mydb=# 
+mydb=# INSERT INTO products (product_id, low_fats, recyclable)
+VALUES
+    (0, 'Y', 'N'),
+    (1, 'Y', 'Y'),
+    (2, 'N', 'Y'),
+    (3, 'Y', 'Y'),
+    (4, 'N', 'N');
+INSERT 0 5
+mydb=# 
+mydb=# SELECT product_id FROM products as p WHERE (p.low_fats == 'Y' AND p.recyclable == 'Y')

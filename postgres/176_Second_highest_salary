@@ -1,0 +1,27 @@
+mydb=# CREATE TABLE Employee
+mydb-# (
+mydb(# id INT PRIMARY KEY,
+mydb(# salary INT);
+CREATE TABLE
+mydb=# 
+mydb=# INSERT INTO Employee
+VALUES
+(1, 100),
+(2, 200),
+(3, 300)
+;
+INSERT 0 3
+mydb=# 
+
+mydb=# SELECT salary
+FROM (
+    SELECT salary, ROW_NUMBER() OVER (ORDER BY salary ASC) AS rn
+    FROM Employee
+) subquery
+WHERE rn = 2;
+ salary 
+--------
+    200
+(1 row)
+
+

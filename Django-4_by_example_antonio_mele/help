@@ -1,0 +1,19 @@
+def main():
+    n = int(input("Введите длину массива: "))
+    array = []
+    for i in range(n):
+        num = int(input(f"Введите элемент массива с индексом {i}: "))
+        array.append(num)
+    i = 0
+    sum = 0
+    while (i < n):
+        if sum < 700:
+            sum = sum + array[i]
+        else:
+			print(i)
+            return i
+	print("Сумма последовательности меньше 700")
+    return -1
+
+if __name__ == "__main__":
+    main()

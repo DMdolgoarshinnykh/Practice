@@ -1,0 +1,62 @@
+# test_calculator.py
+import pytest
+
+class TestCalculatorBasicOperations:
+    def test_addition(self, calculator):
+        calculator.display.setText('2')
+        calculator.handleOperation('+')
+        calculator.display.setText('2')
+        calculator.calculateResult()
+        assert calculator.display.text() == '4'
+
+    def test_subtraction(self, calculator):
+        calculator.display.setText('5')
+        calculator.handleOperation('-')
+        calculator.display.setText('3')
+        calculator.calculateResult()
+        assert calculator.display.text() == '2'
+
+    def test_multiplication(self, calculator):
+        calculator.display.setText('4')
+        calculator.handleOperation('*')
+        calculator.display.setText('3')
+        calculator.calculateResult()
+        assert calculator.display.text() == '12'
+
+    def test_division(self, calculator):
+        calculator.display.setText('10')
+        calculator.handleOperation('/')
+        calculator.display.setText('2')
+        calculator.calculateResult()
+        assert calculator.display.text() == '5'
+
+    def test_division_by_zero(self, calculator):
+        calculator.display.setText('10')
+        calculator.handleOperation('/')
+        calculator.display.setText('0')
+        calculator.calculateResult()
+        assert calculator.display.text() == 'Error'
+
+    def test_decimal_addition(self, calculator):
+        calculator.display.setText('0.1')
+        calculator.handleOperation('+')
+        calculator.display.setText('0.2')
+        calculator.calculateResult()
+        assert float(calculator.display.text()) == pytest.approx(0.3)
+
+    def test_clear(self, calculator):
+        calculator.display.setText('123')
+        calculator.clearDisplay()
+        assert calculator.display.text() == ''
+        assert calculator.first_number is None
+        assert calculator.current_operation == ''
+
+    def test_consecutive_operations(self, calculator):
+        calculator.display.setText('2')
+        calculator.handleOperation('+')
+        calculator.display.setText('2')
+        calculator.calculateResult()
+        calculator.handleOperation('+')
+        calculator.display.setText('3')
+        calculator.calculateResult()
+        assert calculator.display.text() == '7'

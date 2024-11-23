@@ -1,0 +1,38 @@
+mydb=# CREATE TABLE World( 
+name varchar(55) PRIMARY KEY,
+continent varchar(55),
+area int,
+population int,
+gdp bigint)
+;
+CREATE TABLE
+mydb=# 
+mydb=# 
+mydb=# INSERT INTO World                                            
+VALUES
+('Afghanistan', 'Asia', 652230, 25500100, 203430000000),
+('Albania', 'Europe', 28748, 2831741, 12960000000),
+('Algeria', 'Africa', 2381741, 37100000, 188681000000),
+('Andorra', 'Europe', 468, 78115, 3712000000),
+('Angola', 'Africa', 1246700, 20609294, 100990000000);
+INSERT 0 5
+mydb=# 
+mydb=# 
+mydb=# 
+mydb=# SELECT name, population, area FROM World(
+mydb(# );
+ERROR:  function world() does not exist
+LINE 1: SELECT name, population, area FROM World(
+                                           ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+mydb=# SELECT name, population, area FROM World WHERE (World.area > 300000 OR World.population > 25000000)
+mydb-# ;
+    name     | population |  area   
+-------------+------------+---------
+ Afghanistan |   25500100 |  652230
+ Algeria     |   37100000 | 2381741
+ Angola      |   20609294 | 1246700
+(3 rows)
+
+mydb=# 
+
